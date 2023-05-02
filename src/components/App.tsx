@@ -12,11 +12,11 @@ function App() {
   useEffect(() => {
     fetch("https://fakestoreapi.com/products")
       .then((res) => res.json())
-      .then((json) => setProducts(json))
-      .then(() => setLoading(false));
+      .then((json) => setProducts(json));
+    // .then(() => setLoading(false));
   }, []);
 
-  if (loading) return <Spinner />;
+  return <Spinner className="fixed left-72 right-72" />;
   return (
     <>
       <Navbar />

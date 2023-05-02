@@ -19,6 +19,10 @@ export interface AuthState {
   error: string | null;
 }
 
+export interface AppState {
+  isSignInModalShown: boolean,
+  isSignUpModalShown: boolean,
+}
 
 export interface loginCredentials {
   email: string,
