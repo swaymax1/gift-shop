@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { BsGiftFill } from "react-icons/bs";
-import SignInModal from "./Signin";
+import SignInModal from "./SignIn";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "../store";
 import {

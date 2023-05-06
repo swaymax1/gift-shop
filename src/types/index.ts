@@ -1,4 +1,5 @@
 import { User } from "firebase/auth";
+import { DocumentData } from "firebase/firestore";
 
 export interface Product {
   id: number;
@@ -19,6 +20,10 @@ export interface AppState {
   isSignUpModalShown: boolean;
   products: Product[],
   box: ProductInBox[],
+  lastProduct: DocumentData | null,
+  loading: boolean,
+  error: string | null,
+  hasMoreProducts: boolean,
 }
 
 export interface ProductInBox {
