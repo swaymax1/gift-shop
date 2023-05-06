@@ -6,6 +6,7 @@ interface Props {
 }
 
 export default function ProductsList({products} : Props) {
+  console.log(products);
   return (
     <div className="flex flex-wrap justify-center absolute top-32">
       {products.map((product, i) => (

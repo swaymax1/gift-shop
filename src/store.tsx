@@ -4,11 +4,11 @@ import { appReducer, authReducer } from "./reducers";
 const store = configureStore({
   reducer: {
     authReducer,
-    appReducer
+    appReducer,
   },
   middleware: getDefaultMiddleware({
     serializableCheck: false,
-  })
+  }),
 });
 
 export default store;

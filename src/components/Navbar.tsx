@@ -23,7 +23,7 @@ export default function Navbar() {
       </div>
       <div className="w-full block lg:flex lg:items-center lg:w-auto">
         <Link
-          to="/shopping-cart"
+          to="/cart"
           className="block mt-4 lg:inline-block lg:mt-0 text-black hover:text-red-600 mr-4"
         >
           Gift Box

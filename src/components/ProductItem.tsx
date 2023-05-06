@@ -10,12 +10,12 @@ export default function ProductItem({ product }: Props) {
     <Link to={`/products/${product.id}`}>
     <div className="border-cyan-200 rounded-md shadow-md p-4 w-72">
       <img
-        className="w-full h-48 object-cover"
+        className="mx-auto rounded-lg shadow-lg"
         src={product.image}
-        alt={product.title}
+        alt={product.name}
       />
       <div className="flex flex-col items-start my-2">
-        <h3 className="text-gray-700 font-semibold">{product.title}</h3>
+        <h3 className="text-gray-700 font-semibold">{product.name}</h3>
         <span className="text-gray-500 text-sm">
           {product.description.length < 100
             ? product.description

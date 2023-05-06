@@ -2,15 +2,10 @@ import { User } from "firebase/auth";
 
 export interface Product {
   id: number;
-  title: string;
+  name: string;
   price: number;
   description: string;
-  category: string;
   image: string;
-  rating: {
-    rate: number;
-    count: number;
-  };
 }
 
 export interface AuthState {
@@ -20,11 +15,18 @@ export interface AuthState {
 }
 
 export interface AppState {
-  isSignInModalShown: boolean,
-  isSignUpModalShown: boolean,
+  isSignInModalShown: boolean;
+  isSignUpModalShown: boolean;
+  products: Product[],
+  box: ProductInBox[],
+}
+
+export interface ProductInBox {
+  product: Product,
+  quantity: number,
 }
 
 export interface loginCredentials {
-  email: string,
-  password: string,
+  email: string;
+  password: string;
 }
