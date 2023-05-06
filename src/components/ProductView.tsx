@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Product, ProductInBox } from "../types";
 import Select from "react-select";
 import { selectProducts } from "../reducers/appReducer";
-import { AppDispatch } from "../store";
+import { AppDispatch } from "../reducers/store";
 import { addToBox } from "../reducers/appReducer";
 
 const quantityOptions = new Array(5)

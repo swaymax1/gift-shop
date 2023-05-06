@@ -5,7 +5,7 @@ export default function Spinnner() {
     <TailSpin
       color="#EE350D"
       ariaLabel="tail-spin-loading"
-      wrapperStyle={{ position: "fixed", left: "45%", top: "45%" }}
+      wrapperStyle={{ position: "fixed", left: "45%", top: "50%" }}
     />
   );
 }

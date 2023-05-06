@@ -1,12 +1,11 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { AppState, Product, ProductInBox } from "../types";
-import { RootState } from "../store";
+import { RootState } from "./store";
 import {
   getBoxFromLocalStorage,
   getFirebaseErrorMessageFromCode,
 } from "../lib/utils";
 import {
-  DocumentData,
   collection,
   getDocs,
   limit,
@@ -23,44 +22,19 @@ const initialState: AppState = {
   products: [],
   box: getBoxFromLocalStorage() || [],
   lastProduct: null,
-  loading: true,
   error: null,
   hasMoreProducts: true,
 };
 
-const getFirstProducts = createAsyncThunk(
-  "getFirstProducts",
-  async (_, { rejectWithValue, dispatch }) => {
-    try {
-      const productsRef = collection(db, "products");
-      const snapshot = await getDocs(query(productsRef, limit(10)));
-      const fetchedProducts: Product[] = [];
-      snapshot.forEach((doc) => {
-        let product: Product = {
-          name: doc.get("name"),
-          description: doc.get("description"),
-          id: doc.get("id"),
-          price: doc.get("price"),
-          image: doc.get("image"),
-        };
-        fetchedProducts.push(product);
-      });
-      dispatch(setProducts(fetchedProducts));
-    } catch (error) {
-      return rejectWithValue(error);
-    }
-  }
-);
-
 export const getNextProducts = createAsyncThunk(
   "app/getNextProducts",
-  async (_, { getState, rejectWithValue }) => {
+  async (_, { getState, rejectWithValue, dispatch }) => {
     try {
       const productsRef = collection(db, "products");
       const state = getState() as RootState;
       const { lastProduct } = state.appReducer;
       const snapshot = await getDocs(
-        query(productsRef, limit(10), orderBy("id"), startAfter(lastProduct))
+        query(productsRef, limit(8), orderBy("id"), startAfter(lastProduct))
       );
       const fetchedProducts: Product[] = [];
       snapshot.forEach((doc) => {
@@ -73,9 +47,10 @@ export const getNextProducts = createAsyncThunk(
         };
         fetchedProducts.push(product);
       });
+      // dispatch(setProducts([...state.appReducer.products, ...fetchedProducts]));
       return {
         products: fetchedProducts,
-        lastProduct: snapshot.docs[snapshot.size - 1]
+        lastProduct: snapshot.docs[snapshot.size - 1],
       };
     } catch (error) {
       return rejectWithValue(error);
@@ -122,14 +97,9 @@ const appSlice = createSlice({
           if (action.payload.products < 10) state.hasMoreProducts = false;
           state.products.push(...action.payload.products);
           state.lastProduct = action.payload.lastProduct;
-          state.loading = false;
         }
       )
-      .addCase(getNextProducts.pending, (state) => {
-        state.loading = true;
-      })
       .addCase(getNextProducts.rejected, (state, action) => {
-        state.loading = false;
         const error = action.payload;
         if (error instanceof FirebaseError) {
           state.error = getFirebaseErrorMessageFromCode(error.code);
@@ -153,6 +123,5 @@ export const selectSignUpModal = (state: RootState) =>
   state.appReducer.isSignUpModalShown;
 export const selectProducts = (state: RootState) => state.appReducer.products;
 export const selectProductsInBox = (state: RootState) => state.appReducer.box;
-export const selectLoading = (state: RootState) => state.appReducer.loading;
 export const selectHasMore = (state: RootState) =>
   state.appReducer.hasMoreProducts;

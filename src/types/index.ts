@@ -21,7 +21,6 @@ export interface AppState {
   products: Product[],
   box: ProductInBox[],
   lastProduct: DocumentData | null,
-  loading: boolean,
   error: string | null,
   hasMoreProducts: boolean,
 }

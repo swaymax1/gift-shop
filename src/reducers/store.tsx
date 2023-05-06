@@ -1,5 +1,5 @@
 import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
-import { appReducer, authReducer } from "./reducers";
+import { appReducer, authReducer } from ".";
 
 const store = configureStore({
   reducer: {

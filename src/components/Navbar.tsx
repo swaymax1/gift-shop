@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { BsGiftFill } from "react-icons/bs";
 import SignInModal from "./SignIn";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch } from "../store";
+import { AppDispatch } from "../reducers/store";
 import {
   setIsSignInModalShown,
   selectSignInModal,

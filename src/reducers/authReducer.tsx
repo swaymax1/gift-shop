@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { signInWithEmailAndPassword, User } from "firebase/auth";
 import { auth } from "../services/firebase";
 import { AuthState, loginCredentials } from "../types";
-import { RootState } from "../store";
+import { RootState } from "./store";
 import { FirebaseError } from "firebase/app";
 import { setIsSignInModalShown } from "./appReducer";
 import { getFirebaseErrorMessageFromCode } from "../lib/utils";

@@ -1,23 +1,22 @@
 import InfiniteScroll from "react-infinite-scroll-component";
-import { Product } from "../types";
-import ProductItem from "./ProductItem";
-import { TailSpin } from "react-loader-spinner";
+import { ProductItem } from "./ProductItem";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch } from "../store";
-import { getNextProducts, selectHasMore } from "../reducers/appReducer";
-import { Spinner } from "react-bootstrap";
+import { AppDispatch } from "../reducers/store";
+import {
+  getNextProducts,
+  selectHasMore,
+  selectProducts,
+} from "../reducers/appReducer";
+import Spinner from "./Spinner";
 
-interface Props {
-  products: Product[];
-}
-
-export default function ProductsList({ products }: Props) {
+export default function ProductsList() {
   const dispatch = useDispatch<AppDispatch>();
   const hasMore = useSelector(selectHasMore);
+  const products = useSelector(selectProducts);
 
   return (
     <InfiniteScroll
-      className="flex flex-wrap justify-center absolute top-32"
+      className="flex flex-wrap justify-center absolute top-32 isc"
       dataLength={products.length}
       loader={<Spinner />}
       hasMore={hasMore}

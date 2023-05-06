@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { login, selectError, selectLoading } from "../reducers/authReducer";
-import { AppDispatch } from "../store";
+import { AppDispatch } from "../reducers/store";
 import Modal from "react-modal";
 import { selectSignInModal, selectSignUpModal, setIsSignInModalShown } from "../reducers/appReducer";
 

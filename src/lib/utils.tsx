@@ -19,7 +19,7 @@ export function getFirebaseErrorMessageFromCode(errorCode: string): string {
 
 export function getBoxFromLocalStorage(): ProductInBox[] | null {
   let box: ProductInBox[] | null = JSON.parse(
-    localStorage.getItem("box") || ""
+    localStorage.getItem("box") || "{}"
   );
   return box;
 }

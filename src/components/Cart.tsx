@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "../store";
+import { RootState } from "../reducers/store";
 import { removeFromBox } from "../reducers/appReducer";
 import { Product } from "../types";
 import ProductInBoxCard from "./ProductInBoxCard";
