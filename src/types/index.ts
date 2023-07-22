@@ -23,6 +23,7 @@ export interface AppState {
   lastProduct: DocumentData | null,
   error: string | null,
   hasMoreProducts: boolean,
+  totalQuantity: number,
 }
 
 export interface ProductInBox {

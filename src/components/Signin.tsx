@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { login, selectError, selectLoading } from "../reducers/authReducer";
-import { AppDispatch } from "../reducers/store";
+import { login, selectError, selectLoading } from "../redux/authReducer";
+import { AppDispatch } from "../redux/store";
 import Modal from "react-modal";
-import { selectSignInModal, selectSignUpModal, setIsSignInModalShown } from "../reducers/appReducer";
+import { selectSignInModal, selectSignUpModal, setIsSignInModalShown } from "../redux/appReducer";
 
 Modal.setAppElement("#root");
 
@@ -15,7 +15,6 @@ const SignInModal = () => {
   const dispatch = useDispatch<AppDispatch>();
   const isSignInModalShown = useSelector(selectSignInModal);
   const isSignUpModalShown = useSelector(selectSignUpModal);
-
 
   const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);

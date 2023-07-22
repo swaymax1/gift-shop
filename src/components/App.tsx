@@ -1,24 +1,21 @@
 import { useEffect } from "react";
 import ProductsList from "./ProductsList";
-import Navbar from "./Navbar";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch } from "../reducers/store";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../redux/store";
 import {
-  getNextProducts,
-  selectProducts,
-} from "../reducers/appReducer";
+  getNextProducts, setTotalQuantity,
+} from "../redux/appReducer";
 
 function App() {
   const dispatch = useDispatch<AppDispatch>();
-  const products = useSelector(selectProducts);
 
   useEffect(() => {
     dispatch(getNextProducts());
+    dispatch(setTotalQuantity());
   }, []);
 
   return (
     <>
-      <Navbar />
       <ProductsList />
     </>
   );

@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "../reducers/store";
-import { removeFromBox } from "../reducers/appReducer";
+import { RootState } from "../redux/store";
+import { removeFromBox } from "../redux/appReducer";
 import { Product } from "../types";
 import ProductInBoxCard from "./ProductInBoxCard";
 
@@ -17,7 +17,7 @@ const GiftsBox = () => {
   };
 
   return (
-    <div>
+    <div className="absolute top-36 mx-auto min-w-[30rem]">
       <h1 className="text-2xl font-bold mb-4">Gifts Box</h1>
       {box.length > 0 ? (
         <div>
@@ -36,7 +36,7 @@ const GiftsBox = () => {
           </button>
         </div>
       ) : (
-        <p className="text-gray-700">Your gifts box is empty.</p>
+        <p className="text-gray-700">Gifts box is empty.</p>
       )}
     </div>
   );

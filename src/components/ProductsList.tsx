@@ -1,12 +1,13 @@
+import { useEffect } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { ProductItem } from "./ProductItem";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch } from "../reducers/store";
+import { AppDispatch } from "../redux/store";
 import {
   getNextProducts,
   selectHasMore,
   selectProducts,
-} from "../reducers/appReducer";
+} from "../redux/appReducer";
 import Spinner from "./Spinner";
 
 export default function ProductsList() {
@@ -16,7 +17,7 @@ export default function ProductsList() {
 
   return (
     <InfiniteScroll
-      className="flex flex-wrap justify-center absolute top-32 isc"
+      className="grid grid-cols-2 gap-2 md:grid-cols-3"
       dataLength={products.length}
       loader={<Spinner />}
       hasMore={hasMore}

@@ -2,8 +2,10 @@ import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { AppState, Product, ProductInBox } from "../types";
 import { RootState } from "./store";
 import {
+  createProductFromDoc,
   getBoxFromLocalStorage,
   getFirebaseErrorMessageFromCode,
+  getNumberOfItems,
 } from "../lib/utils";
 import {
   collection,
@@ -24,11 +26,12 @@ const initialState: AppState = {
   lastProduct: null,
   error: null,
   hasMoreProducts: true,
+  totalQuantity: 0,
 };
 
 export const getNextProducts = createAsyncThunk(
   "app/getNextProducts",
-  async (_, { getState, rejectWithValue, dispatch }) => {
+  async (_, { getState, rejectWithValue }) => {
     try {
       const productsRef = collection(db, "products");
       const state = getState() as RootState;
@@ -37,17 +40,9 @@ export const getNextProducts = createAsyncThunk(
         query(productsRef, limit(8), orderBy("id"), startAfter(lastProduct))
       );
       const fetchedProducts: Product[] = [];
-      snapshot.forEach((doc) => {
-        let product: Product = {
-          name: doc.get("name"),
-          description: doc.get("description"),
-          id: doc.get("id"),
-          price: doc.get("price"),
-          image: doc.get("image"),
-        };
-        fetchedProducts.push(product);
-      });
-      // dispatch(setProducts([...state.appReducer.products, ...fetchedProducts]));
+      snapshot.forEach((doc) =>
+        fetchedProducts.push(createProductFromDoc(doc))
+      );
       return {
         products: fetchedProducts,
         lastProduct: snapshot.docs[snapshot.size - 1],
@@ -79,6 +74,7 @@ const appSlice = createSlice({
       ) {
         state.box.map((inBox) => (inBox.quantity += action.payload.quantity));
       } else state.box.push(action.payload);
+      state.totalQuantity = getNumberOfItems(state.box);
       localStorage.setItem("box", JSON.stringify(state.box));
     },
     removeFromBox: (state, action: PayloadAction<Product>) => {
@@ -88,6 +84,9 @@ const appSlice = createSlice({
       state.box.slice(0);
       localStorage.setItem("box", JSON.stringify(state.box));
     },
+    setTotalQuantity: (state) => {
+      state.totalQuantity = getNumberOfItems(state.box);
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -115,6 +114,7 @@ export const {
   setProducts,
   addToBox,
   removeFromBox,
+  setTotalQuantity
 } = appSlice.actions;
 
 export const selectSignInModal = (state: RootState) =>
