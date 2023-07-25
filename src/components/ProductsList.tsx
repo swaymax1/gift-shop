@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { ProductItem } from "./ProductItem";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,7 +6,7 @@ import {
   getNextProducts,
   selectHasMore,
   selectProducts,
-} from "../redux/appReducer";
+} from "../redux/productSlice";
 import Spinner from "./Spinner";
 
 export default function ProductsList() {

@@ -16,14 +16,16 @@ export interface AuthState {
 }
 
 export interface AppState {
-  isSignInModalShown: boolean;
-  isSignUpModalShown: boolean;
   products: Product[],
   box: ProductInBox[],
   lastProduct: DocumentData | null,
   error: string | null,
   hasMoreProducts: boolean,
   totalQuantity: number,
+}
+
+export interface OrderState {
+  order: order | null,
 }
 
 export interface ProductInBox {
@@ -35,3 +37,15 @@ export interface loginCredentials {
   email: string;
   password: string;
 }
+
+export interface order {
+  products: ProductInBox[],
+  details: cutomerDetails,
+}
+
+export interface cutomerDetails {
+  name: String,
+  city: String,
+  phoneNumber: number,
+}
+

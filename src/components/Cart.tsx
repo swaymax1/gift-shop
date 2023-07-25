@@ -1,8 +1,10 @@
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../redux/store";
-import { removeFromBox } from "../redux/appReducer";
+import { removeFromBox } from "../redux/productSlice";
 import { Product } from "../types";
 import ProductInBoxCard from "./ProductInBoxCard";
+import OrderDetails from "./OrderDetails";
+import { useState } from "react";
 
 const GiftsBox = () => {
   const dispatch = useDispatch();
@@ -12,9 +14,7 @@ const GiftsBox = () => {
     dispatch(removeFromBox(product));
   };
 
-  const handlePlaceOrder = () => {
-    // handle placing the order
-  };
+  const [orderModalOn, setOrderModal] = useState(true);
 
   return (
     <div className="absolute top-36 mx-auto min-w-[30rem]">
@@ -30,10 +30,11 @@ const GiftsBox = () => {
           ))}
           <button
             className="bg-green-500 hover:bg-green-700 text-white py-2 px-4 rounded"
-            onClick={handlePlaceOrder}
+            onClick={() => setOrderModal(true)}
           >
             Place Order
           </button>
+          <OrderDetails isOpen={orderModalOn} onRequestClose={() => setOrderModal(false)}/>
         </div>
       ) : (
         <p className="text-gray-700">Gifts box is empty.</p>

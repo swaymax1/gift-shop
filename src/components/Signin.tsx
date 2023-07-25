@@ -1,20 +1,22 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { login, selectError, selectLoading } from "../redux/authReducer";
+import { login, selectError, selectLoading } from "../redux/authSlice";
 import { AppDispatch } from "../redux/store";
 import Modal from "react-modal";
-import { selectSignInModal, selectSignUpModal, setIsSignInModalShown } from "../redux/appReducer";
+
+interface Props {
+  isOpen: boolean;
+  onRequestClose: any;
+}
 
 Modal.setAppElement("#root");
 
-const SignInModal = () => {
+const SignInModal = ({ isOpen, onRequestClose }: Props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const loading = useSelector(selectLoading);
   const error = useSelector(selectError);
   const dispatch = useDispatch<AppDispatch>();
-  const isSignInModalShown = useSelector(selectSignInModal);
-  const isSignUpModalShown = useSelector(selectSignUpModal);
 
   const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
@@ -31,19 +33,16 @@ const SignInModal = () => {
 
   return (
     <Modal
-      isOpen={isSignInModalShown}
-      onRequestClose={() => dispatch(setIsSignInModalShown(false))}
+      isOpen={isOpen}
+      onRequestClose={onRequestClose}
       className="rounded-lg p-6 fixed top-32 left-96 w-5/12 h-4/5"
     >
-      <div className="bg-white p-6 rounded-lg">
+      <div className="bg-zinc-800 p-6 rounded-lg">
         <p className="text-red-700 mb-3">{error}</p>
         <h2 className="text-2xl font-bold mb-4">Sign In</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label
-              htmlFor="email"
-              className="block text-gray-700 font-bold mb-2"
-            >
+            <label htmlFor="email" className="block font-bold mb-2">
               Email
             </label>
             <input
@@ -55,10 +54,7 @@ const SignInModal = () => {
             />
           </div>
           <div className="mb-6">
-            <label
-              htmlFor="password"
-              className="block text-gray-700 font-bold mb-2"
-            >
+            <label htmlFor="password" className="block font-bold mb-2">
               Password
             </label>
             <input
