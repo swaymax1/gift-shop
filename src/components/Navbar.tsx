@@ -9,18 +9,18 @@ import { useState } from "react";
 export default function Navbar() {
   const dispatch = useDispatch<AppDispatch>();
   const totalQuantity = useSelector(
-    (state: RootState) => state.appReducer.totalQuantity
+    (state: RootState) => state.productReducer.totalQuantity
   );
   const [signInModalOn, setSignInModal] = useState(false);
 
   return (
     <nav className="flex justify-between bg-gray-700 p-6 w-full">
-      <div className="flex items-center flex-shrink-0 text-white mr-4">
+      <div className="flex items-center flex-shrink-0 mr-4">
         <Link
           to="/"
-          className="font-semibold text-xl tracking-tight lg:text-2xl"
+          className="font-semibold text-2xl tracking-tight"
         >
-          <i>Your gifts</i>
+          <i>YourGifts</i>
         </Link>
       </div>
       <div className="flex items-center">

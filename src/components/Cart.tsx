@@ -3,18 +3,15 @@ import { RootState } from "../redux/store";
 import { removeFromBox } from "../redux/productSlice";
 import { Product } from "../types";
 import ProductInBoxCard from "./ProductInBoxCard";
-import OrderDetails from "./OrderDetails";
-import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const GiftsBox = () => {
   const dispatch = useDispatch();
-  const box = useSelector((state: RootState) => state.appReducer.box);
+  const box = useSelector((state: RootState) => state.productReducer.box);
 
   const handleRemoveFromBox = (product: Product) => {
     dispatch(removeFromBox(product));
   };
-
-  const [orderModalOn, setOrderModal] = useState(true);
 
   return (
     <div className="absolute top-36 mx-auto min-w-[30rem]">
@@ -30,11 +27,9 @@ const GiftsBox = () => {
           ))}
           <button
             className="bg-green-500 hover:bg-green-700 text-white py-2 px-4 rounded"
-            onClick={() => setOrderModal(true)}
           >
-            Place Order
+            <Link to="/order">Place Order</Link>
           </button>
-          <OrderDetails isOpen={orderModalOn} onRequestClose={() => setOrderModal(false)}/>
         </div>
       ) : (
         <p className="text-gray-700">Gifts box is empty.</p>

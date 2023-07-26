@@ -9,11 +9,12 @@ import Navbar from "./components/Navbar";
 import ProductsList from "./components/ProductsList";
 import { useEffect } from "react";
 import { getNextProducts, setTotalQuantity } from "./redux/productSlice";
+import OrderDetails from "./components/OrderDetails";
 
 function Layout({ children }: { children: React.ReactNode }) {
 
   const dispatch = useDispatch<AppDispatch>();
-  const box = useSelector((state: RootState) => state.appReducer.box);
+  const box = useSelector((state: RootState) => state.productReducer.box);
 
   useEffect(() => {
     dispatch(getNextProducts());
@@ -31,7 +32,6 @@ function Layout({ children }: { children: React.ReactNode }) {
     </>
   );
 
-  
 }
 
 const root = ReactDOM.createRoot(
@@ -45,6 +45,7 @@ root.render(
           <Route path="/" Component={ProductsList} />
           <Route path="/products/:id" Component={ProductView} />
           <Route path="/cart" Component={Cart} />
+          <Route path="/order" Component={OrderDetails}/>
         </Routes>
       </Layout>
     </Router>

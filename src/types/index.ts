@@ -15,7 +15,7 @@ export interface AuthState {
   error: string | null;
 }
 
-export interface AppState {
+export interface ProductState {
   products: Product[],
   box: ProductInBox[],
   lastProduct: DocumentData | null,
@@ -25,7 +25,7 @@ export interface AppState {
 }
 
 export interface OrderState {
-  order: order | null,
+  order: Order | null,
 }
 
 export interface ProductInBox {
@@ -33,19 +33,19 @@ export interface ProductInBox {
   quantity: number,
 }
 
-export interface loginCredentials {
+export interface LoginCredentials {
   email: string;
   password: string;
 }
 
-export interface order {
+export interface Order {
   products: ProductInBox[],
-  details: cutomerDetails,
+  customerDetails: CustomerDetails,
 }
 
-export interface cutomerDetails {
+export interface CustomerDetails {
   name: String,
   city: String,
-  phoneNumber: number,
+  phoneNumber: String,
 }
 

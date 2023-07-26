@@ -35,9 +35,8 @@ const SignInModal = ({ isOpen, onRequestClose }: Props) => {
     <Modal
       isOpen={isOpen}
       onRequestClose={onRequestClose}
-      className="rounded-lg p-6 fixed top-32 left-96 w-5/12 h-4/5"
+      className="rounded-lg p-6 fixed top-32 left-96 w-5/12 h-4/5 bg-zinc-800"
     >
-      <div className="bg-zinc-800 p-6 rounded-lg">
         <p className="text-red-700 mb-3">{error}</p>
         <h2 className="text-2xl font-bold mb-4">Sign In</h2>
         <form onSubmit={handleSubmit}>
@@ -73,7 +72,6 @@ const SignInModal = ({ isOpen, onRequestClose }: Props) => {
             Sign In
           </button>
         </form>
-      </div>
     </Modal>
   );
 };
