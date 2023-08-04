@@ -16,7 +16,7 @@ export default function ProductsList() {
 
   return (
     <InfiniteScroll
-      className="grid grid-cols-2 gap-2 md:grid-cols-3"
+      className="grid grid-cols-2 gap-5 md:grid-cols-4 mt-4 mx-2"
       dataLength={products.length}
       loader={<Spinner />}
       hasMore={hasMore}

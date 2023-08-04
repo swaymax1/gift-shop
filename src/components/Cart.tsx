@@ -9,30 +9,29 @@ const GiftsBox = () => {
   const dispatch = useDispatch();
   const box = useSelector((state: RootState) => state.productReducer.box);
 
-  const handleRemoveFromBox = (product: Product) => {
-    dispatch(removeFromBox(product));
-  };
-
   return (
-    <div className="absolute top-36 mx-auto min-w-[30rem]">
-      <h1 className="text-2xl font-bold mb-4">Gifts Box</h1>
+    <div className="mt-10">
+      <h1 className="text-2xl md:text-4xl font-semibold mb-4 ml-4 font-serif text-gray-100">
+        Cart
+      </h1>
       {box.length > 0 ? (
-        <div>
+        <div className="text-center">
           {box.map((productInBox) => (
             <ProductInBoxCard
-              handleRemoveFromBox={handleRemoveFromBox}
+              handleRemoveFromBox={() => dispatch(removeFromBox(productInBox))}
               productInBox={productInBox}
               key={productInBox.product.id}
             />
           ))}
-          <button
-            className="bg-green-500 hover:bg-green-700 text-white py-2 px-4 rounded"
-          >
-            <Link to="/order">Place Order</Link>
-          </button>
+
+          <Link to="/order">
+            <button className="bg-red-600 rounded w-9/12 md:w-5/12 md:h-12 py-2 px-4 font-semibold mb-10">
+              Place Order
+            </button>
+          </Link>
         </div>
       ) : (
-        <p className="text-gray-700">Gifts box is empty.</p>
+        <p className="text-gray-700 fixed left-1/2 top-1/2">Cart is empty.</p>
       )}
     </div>
   );

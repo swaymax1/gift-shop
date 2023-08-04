@@ -6,6 +6,7 @@ import {
   getBoxFromLocalStorage,
   getFirebaseErrorMessageFromCode,
   getNumberOfItems,
+  getTotalPrice,
 } from "../lib/utils";
 import {
   collection,
@@ -25,6 +26,8 @@ const initialState: ProductState = {
   error: null,
   hasMoreProducts: true,
   totalQuantity: 0,
+  totalPrice : 0,
+  addToBoxCompleted : false,
 };
 
 export const getNextProducts = createAsyncThunk(
@@ -35,7 +38,7 @@ export const getNextProducts = createAsyncThunk(
       const state = getState() as RootState;
       const { lastProduct } = state.productReducer;
       const snapshot = await getDocs(
-        query(productsRef, limit(8), orderBy("id"), startAfter(lastProduct))
+        query(productsRef, limit(16), orderBy("id"), startAfter(lastProduct))
       );
       const fetchedProducts: Product[] = [];
       snapshot.forEach((doc) =>
@@ -67,24 +70,30 @@ const appSlice = createSlice({
         state.box.map((inBox) => (inBox.quantity += action.payload.quantity));
       } else state.box.push(action.payload);
       state.totalQuantity = getNumberOfItems(state.box);
+      state.addToBoxCompleted = true;
     },
-    removeFromBox: (state, action: PayloadAction<Product>) => {
+    removeFromBox: (state, action: PayloadAction<ProductInBox>) => {
       state.box = state.box.filter(
-        (productInBox) => productInBox.product.id !== action.payload.id
+        (productInBox) => productInBox.product.id !== action.payload.product.id
       );
-      state.box.slice(0);
     },
     setTotalQuantity: (state) => {
       state.totalQuantity = getNumberOfItems(state.box);
     },
+    setTotalPrice: (state) => {
+      state.totalPrice = getTotalPrice(state.box);
+    },
     setProductInBoxQuantity: (state, action) => {
-      const {id, newQty} = action.payload;
+      const { id, newQty } = action.payload;
       state.box = state.box.map((productInBox) => {
-        if(productInBox.product.id === id) {
-          return {...productInBox, quantity: newQty}
+        if (productInBox.product.id === id) {
+          return { ...productInBox, quantity: newQty };
         }
         return productInBox;
       });
+    },
+    setAddToBoxCompletedFalse: (state) => {
+      state.addToBoxCompleted = false;
     }
   },
   extraReducers: (builder) => {
@@ -113,9 +122,13 @@ export const {
   removeFromBox,
   setTotalQuantity,
   setProductInBoxQuantity,
+  setTotalPrice,
+  setAddToBoxCompletedFalse
 } = appSlice.actions;
 
-export const selectProducts = (state: RootState) => state.productReducer.products;
-export const selectProductsInBox = (state: RootState) => state.productReducer.box;
+export const selectProducts = (state: RootState) =>
+  state.productReducer.products;
+export const selectProductsInBox = (state: RootState) =>
+  state.productReducer.box;
 export const selectHasMore = (state: RootState) =>
   state.productReducer.hasMoreProducts;

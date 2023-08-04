@@ -8,8 +8,10 @@ import Cart from "./components/Cart";
 import Navbar from "./components/Navbar";
 import ProductsList from "./components/ProductsList";
 import { useEffect } from "react";
-import { getNextProducts, setTotalQuantity } from "./redux/productSlice";
+import { getNextProducts, setTotalPrice, setTotalQuantity } from "./redux/productSlice";
 import OrderDetails from "./components/OrderDetails";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 
 function Layout({ children }: { children: React.ReactNode }) {
 
@@ -23,6 +25,7 @@ function Layout({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     localStorage.setItem("box", JSON.stringify(box));
     dispatch(setTotalQuantity());
+    dispatch(setTotalPrice());
   }, [box]);
 
   return (
@@ -49,5 +52,6 @@ root.render(
         </Routes>
       </Layout>
     </Router>
+    <ToastContainer />
   </Provider>
 );

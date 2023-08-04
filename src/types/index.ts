@@ -22,10 +22,14 @@ export interface ProductState {
   error: string | null,
   hasMoreProducts: boolean,
   totalQuantity: number,
+  totalPrice: number,
+  addToBoxCompleted: boolean,
 }
 
 export interface OrderState {
   order: Order | null,
+  addingOrder: boolean,
+  orderPlaced: boolean,
 }
 
 export interface ProductInBox {
@@ -41,6 +45,7 @@ export interface LoginCredentials {
 export interface Order {
   products: ProductInBox[],
   customerDetails: CustomerDetails,
+  totalPrice: number,
 }
 
 export interface CustomerDetails {

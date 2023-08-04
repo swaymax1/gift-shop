@@ -62,7 +62,7 @@ export function getProductTotalAmount(product: ProductInBox) {
   return product.quantity * product.product.price;
 }
 
-export function getTotalAmont(box: ProductInBox[]) {
+export function getTotalPrice(box: ProductInBox[]) {
   let total = 0;
   for(let product of box) {
     total += getProductTotalAmount(product);
