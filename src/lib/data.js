@@ -111,23 +111,22 @@ export const data = [
     description:
       "Carry your essentials in style with this trendy blue bag. With a sleek and minimalist design, it's perfect for everyday use or special occasions.",
   },
+  {
+    description:
+      "Check your makeup on the go with this cute Hello Kitty mirror.",
+    id: 9,
+    image:
+      "https://firebasestorage.googleapis.com/v0/b/gift-shop-4bf1f.appspot.com/o/images%2F9.jpg?alt=media&token=62169e0c-8202-4ca4-8e42-ad777f4bc9b0",
+    name: "Hello kitty mirror",
+    price: 18,
+  },
+  {
+    description:
+      "Check your makeup on the go with this cute Hello Kitty mirror.",
+    id: 9,
+    image:
+      "https://firebasestorage.googleapis.com/v0/b/gift-shop-4bf1f.appspot.com/o/images%2F9.jpg?alt=media&token=62169e0c-8202-4ca4-8e42-ad777f4bc9b0",
+    name: "Hello kitty mirror",
+    price: 18,
+  }
 ];
-
-/*
-
-  {
-    id: 6,
-    name: "Bear teinte set",
-    description:
-      "This cute and cuddly bear-themed teinte set is perfect for any tea lover.",
-    price: 5,
-  },
-    
-  {
-    id: 12,
-    name: "strawberry sheet mask",
-    description:
-      "Treat your skin to a refreshing and rejuvenating sheet mask with the sweet scent of strawberries.",
-    price: 2,
-  },
-*/

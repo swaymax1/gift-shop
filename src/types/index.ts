@@ -13,28 +13,31 @@ export interface AuthState {
   currentUser: User | null;
   loading: boolean;
   error: string | null;
+  signInModalOn: boolean;
+  signUpModalOn: boolean;
+  favorites: Product[];
 }
 
 export interface ProductState {
-  products: Product[],
-  box: ProductInBox[],
-  lastProduct: DocumentData | null,
-  error: string | null,
-  hasMoreProducts: boolean,
-  totalQuantity: number,
-  totalPrice: number,
-  addToBoxCompleted: boolean,
+  products: Product[];
+  box: ProductInBox[];
+  lastProduct: DocumentData | null;
+  error: string | null;
+  hasMoreProducts: boolean;
+  totalQuantity: number;
+  totalPrice: number;
+  addToBoxCompleted: boolean;
 }
 
 export interface OrderState {
-  order: Order | null,
-  addingOrder: boolean,
-  orderPlaced: boolean,
+  order: Order | null;
+  addingOrder: boolean;
+  orderPlaced: boolean;
 }
 
 export interface ProductInBox {
-  product: Product,
-  quantity: number,
+  product: Product;
+  quantity: number;
 }
 
 export interface LoginCredentials {
@@ -43,14 +46,13 @@ export interface LoginCredentials {
 }
 
 export interface Order {
-  products: ProductInBox[],
-  customerDetails: CustomerDetails,
-  totalPrice: number,
+  products: ProductInBox[];
+  customerDetails: CustomerDetails;
+  totalPrice: number;
 }
 
 export interface CustomerDetails {
-  name: String,
-  city: String,
-  phoneNumber: String,
+  name: String;
+  city: String;
+  phoneNumber: String;
 }
-

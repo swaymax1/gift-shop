@@ -8,15 +8,21 @@ import Cart from "./components/Cart";
 import Navbar from "./components/Navbar";
 import ProductsList from "./components/ProductsList";
 import { useEffect } from "react";
-import { getNextProducts, setTotalPrice, setTotalQuantity } from "./redux/productSlice";
+import {
+  getNextProducts,
+  setTotalPrice,
+  setTotalQuantity,
+} from "./redux/productSlice";
 import OrderDetails from "./components/OrderDetails";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
+import Favorites from "./components/Favorites";
+import { clearFavorites, fetchFavorites } from "./redux/authSlice";
 
 function Layout({ children }: { children: React.ReactNode }) {
-
   const dispatch = useDispatch<AppDispatch>();
   const box = useSelector((state: RootState) => state.productReducer.box);
+  const user = useSelector((state: RootState) => state.authReducer.currentUser);
 
   useEffect(() => {
     dispatch(getNextProducts());
@@ -28,13 +34,18 @@ function Layout({ children }: { children: React.ReactNode }) {
     dispatch(setTotalPrice());
   }, [box]);
 
+  useEffect(() => {
+    if(user) {
+      dispatch(fetchFavorites());
+    } else dispatch(clearFavorites());
+  },[user]);
+
   return (
     <>
       <Navbar />
       {children}
     </>
   );
-
 }
 
 const root = ReactDOM.createRoot(
@@ -48,7 +59,8 @@ root.render(
           <Route path="/" Component={ProductsList} />
           <Route path="/products/:id" Component={ProductView} />
           <Route path="/cart" Component={Cart} />
-          <Route path="/order" Component={OrderDetails}/>
+          <Route path="/order" Component={OrderDetails} />
+          <Route path="/favorites" Component={Favorites} />
         </Routes>
       </Layout>
     </Router>

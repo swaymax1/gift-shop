@@ -9,7 +9,7 @@ interface Props {
 export const ProductItem = React.memo(({ product }: Props) => {
   return (
     <Link to={`/products/${product.id}`}>
-      <div className="rounded-md shadow-md p-4 h-[22rem] md:h-[25rem] bg-[#383737] ">
+      <div className="rounded-md shadow-md p-4 h-[22rem] md:h-[25rem] bg-[#383737] mt-3">
         <img
           className="mx-auto rounded-lg shadow-lg h-4/6 w-full"
           src={product.image}
