@@ -1,25 +1,31 @@
-import React from "react";
+import { AiOutlineInstagram } from "react-icons/ai";
+import { BsTiktok } from "react-icons/bs";
 
-const Footer = () => {
+export default function Footer({classes} : any) {
+  let s = "";
   return (
-    <footer className="bg-gray-800 text-white p-4 flex justify-center items-center">
-      <a
-        href="https://www.instagram.com/your-instagram-link/"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="mr-3"
-      >
-        <i className="fab fa-instagram text-2xl"></i>
-      </a>
-      <a
-        href="https://www.tiktok.com/@your-tiktok-link/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <i className="fab fa-tiktok text-2xl"></i>
-      </a>
+    <footer
+      className={`text-white py-4 text-center flex flex-col items-center justify-center mt-20 ${classes}`}
+    >
+      <div className="flex items-center justify-center mb-4">
+        <a
+          href="https://www.instagram.com/yourgift1__/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mr-10 text-2xl"
+        >
+          <AiOutlineInstagram />
+        </a>
+        <a
+          href="https://www.tiktok.com/@yourgift1___"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-2xl"
+        >
+          <BsTiktok />
+        </a>
+      </div>
+      <p className="">All rights reserved © Your Gifts</p>
     </footer>
   );
-};
-
-export default Footer;
+}

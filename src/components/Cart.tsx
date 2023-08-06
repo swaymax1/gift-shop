@@ -31,7 +31,7 @@ const GiftsBox = () => {
           </Link>
         </div>
       ) : (
-        <p className="text-gray-700 fixed left-1/2 top-1/2">Cart is empty.</p>
+        <p className="fixed left-1/3 md:left-1/2 top-1/2">Cart is empty.</p>
       )}
     </div>
   );

@@ -3,7 +3,6 @@ import { OrderState, Order } from "../types";
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "../services/firebase";
 
-
 const initialState: OrderState = {
   order: null,
   addingOrder: false,

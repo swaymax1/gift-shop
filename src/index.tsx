@@ -18,6 +18,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import Favorites from "./components/Favorites";
 import { clearFavorites, fetchFavorites } from "./redux/authSlice";
+import Footer from "./components/Footer";
+
 
 function Layout({ children }: { children: React.ReactNode }) {
   const dispatch = useDispatch<AppDispatch>();
@@ -35,16 +37,17 @@ function Layout({ children }: { children: React.ReactNode }) {
   }, [box]);
 
   useEffect(() => {
-    if(user) {
+    if (user) {
       dispatch(fetchFavorites());
     } else dispatch(clearFavorites());
-  },[user]);
+  }, [user]);
 
   return (
-    <>
+    <div className="flex flex-col min-h-screen">
       <Navbar />
-      {children}
-    </>
+      <div className="flex-grow">{children}</div>
+      <Footer />
+    </div>
   );
 }
 

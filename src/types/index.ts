@@ -46,9 +46,12 @@ export interface LoginCredentials {
 }
 
 export interface Order {
+  id: String,
   products: ProductInBox[];
   customerDetails: CustomerDetails;
   totalPrice: number;
+  date: number;
+  pending: boolean;
 }
 
 export interface CustomerDetails {

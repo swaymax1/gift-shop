@@ -7,10 +7,11 @@ import { addToBox, setAddToBoxCompletedFalse } from "../redux/productSlice";
 import { getProductById } from "../lib/utils";
 import Spinnner from "./Spinner";
 import Selector from "./Selector";
-import { BsGiftFill } from "react-icons/bs";
+import { BsGiftFill, BsTiktok } from "react-icons/bs";
 import { toast } from "react-toastify";
-import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+import { AiFillHeart, AiOutlineHeart, AiOutlineInstagram } from "react-icons/ai";
 import { addToFavorite } from "../redux/authSlice";
+import Footer from "./Footer";
 
 const notFound = "Product not found!";
 
@@ -116,6 +117,7 @@ export default function ProductView() {
           <BsGiftFill className="w-6 h-6 pr-2" /> Add To Gift Box
         </button>
       </div>
+      <Footer classes="md:hidden"/>
     </div>
   );
 }

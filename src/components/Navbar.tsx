@@ -30,7 +30,7 @@ export default function Navbar() {
   );
 
   return (
-    <nav className="flex justify-between bg-gray-700 p-6 w-full">
+    <nav className="flex justify-between p-6 w-full bg-gradient-to-r from-blue-950 to-gray-500">
       <div className="flex items-center flex-shrink-0 mr-4">
         <Link to="/" className="font-semibold text-2xl tracking-tight">
           <i>YourGifts</i>

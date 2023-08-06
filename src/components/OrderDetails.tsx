@@ -7,6 +7,8 @@ import { TailSpin } from "react-loader-spinner";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 
+
+
 export default function OrderDetails() {
   const products = useSelector((state: RootState) => state.productReducer.box);
   const totalPrice = useSelector(
@@ -78,6 +80,7 @@ export default function OrderDetails() {
       return;
     }
     const order: Order = {
+      id: '',
       customerDetails: {
         name,
         city,
@@ -85,12 +88,21 @@ export default function OrderDetails() {
       },
       products,
       totalPrice: totalPrice,
+      date: Date.now(),
+      pending: true,
     };
     dispatch(placeOrder(order));
   };
 
   return (
-    <div className="mt-10 w-9/12 md:w-5/12 mx-auto">
+    <div className="mt-14 w-9/12 md:w-5/12 mx-auto">
+      <sup className="flex absolute left-2 top-28 md:left-[50rem]">
+        <span className="font-semibold">Delivery to all lebanon</span>
+        <img
+          src="https://cdn.countryflags.com/thumbs/lebanon/flag-800.png"
+          className="w-5 h-5 relative bottom-3 left-3"
+        />
+      </sup>
       <h1 className="font-semibold text-gray-100 text-2xl font-serif mb-10">
         Customer Details
       </h1>
