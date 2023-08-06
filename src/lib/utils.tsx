@@ -8,6 +8,7 @@ import {
 import { Product, ProductInBox } from "../types";
 import { db } from "../services/firebase";
 
+
 export function getFirebaseErrorMessageFromCode(errorCode: string): string {
   switch (errorCode) {
     case "auth/user-not-found":

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { Product, ProductInBox } from "../types";
 import { AppDispatch, RootState } from "../redux/store";
-import { addToBox, setAddToBoxCompletedFalse } from "../redux/productSlice";
+import { addToBox, setAddToBoxCompletedFalse, setProductsLoading } from "../redux/productSlice";
 import { getProductById } from "../lib/utils";
 import Spinnner from "./Spinner";
 import Selector from "./Selector";
@@ -20,7 +20,6 @@ export default function ProductView() {
   const [error, setError] = useState<string | null>(
     id === null ? notFound : null
   );
-  const [loading, setLoading] = useState<boolean>(true);
   const [product, setProduct] = useState<Product>();
   const [quantity, setQuantity] = useState<number>(1);
   const favorites = useSelector(
@@ -31,6 +30,9 @@ export default function ProductView() {
   const addToBoxCompleted = useSelector(
     (state: RootState) => state.productReducer.addToBoxCompleted
   );
+  const loading = useSelector(
+    (state: RootState) => state.productReducer.loading
+  );
 
   const handleProductAdd = () => {
     const productToAdd: ProductInBox = { product: product!, quantity };
@@ -38,6 +40,7 @@ export default function ProductView() {
   };
 
   useEffect(() => {
+    dispatch(setProductsLoading(true));
     if (!error) {
       getProductById(Number(id))
         .then((product) => {
@@ -45,7 +48,7 @@ export default function ProductView() {
           setProduct(product);
         })
         .catch(() => setError(notFound))
-        .finally(() => setLoading(false));
+        .finally(() => dispatch(setProductsLoading(false)));
     }
   }, []);
 

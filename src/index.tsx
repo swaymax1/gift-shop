@@ -42,11 +42,17 @@ function Layout({ children }: { children: React.ReactNode }) {
     } else dispatch(clearFavorites());
   }, [user]);
 
+  const loading = useSelector(
+    (state: RootState) => state.productReducer.loading
+  );
+
+  console.log(loading);
+
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar />
       <div className="flex-grow">{children}</div>
-      <Footer />
+      {!loading && <Footer />}
     </div>
   );
 }

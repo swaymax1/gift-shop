@@ -28,6 +28,7 @@ const initialState: ProductState = {
   totalQuantity: 0,
   totalPrice : 0,
   addToBoxCompleted : false,
+  loading: true,
 };
 
 export const getNextProducts = createAsyncThunk(
@@ -94,6 +95,9 @@ const appSlice = createSlice({
     },
     setAddToBoxCompletedFalse: (state) => {
       state.addToBoxCompleted = false;
+    },
+    setProductsLoading: (state, action) => {
+      state.loading = action.payload;
     }
   },
   extraReducers: (builder) => {
@@ -123,7 +127,8 @@ export const {
   setTotalQuantity,
   setProductInBoxQuantity,
   setTotalPrice,
-  setAddToBoxCompletedFalse
+  setAddToBoxCompletedFalse,
+  setProductsLoading,
 } = appSlice.actions;
 
 export const selectProducts = (state: RootState) =>

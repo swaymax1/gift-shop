@@ -6,7 +6,7 @@ import { placeOrder, setOrderPlacedFalse } from "../redux/orderSlice";
 import { TailSpin } from "react-loader-spinner";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
-
+import { Guid } from "guid-typescript";
 
 
 export default function OrderDetails() {
@@ -80,7 +80,7 @@ export default function OrderDetails() {
       return;
     }
     const order: Order = {
-      id: '',
+      id: Guid.create().toString(),
       customerDetails: {
         name,
         city,

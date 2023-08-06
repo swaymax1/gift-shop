@@ -27,6 +27,7 @@ export interface ProductState {
   totalQuantity: number;
   totalPrice: number;
   addToBoxCompleted: boolean;
+  loading: boolean;
 }
 
 export interface OrderState {
