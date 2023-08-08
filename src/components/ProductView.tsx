@@ -7,9 +7,9 @@ import { addToBox, setAddToBoxCompletedFalse, setProductsLoading } from "../redu
 import { getProductById } from "../lib/utils";
 import Spinnner from "./Spinner";
 import Selector from "./Selector";
-import { BsGiftFill, BsTiktok } from "react-icons/bs";
+import { BsGiftFill } from "react-icons/bs";
 import { toast } from "react-toastify";
-import { AiFillHeart, AiOutlineHeart, AiOutlineInstagram } from "react-icons/ai";
+import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { addToFavorite } from "../redux/authSlice";
 import Footer from "./Footer";
 
@@ -87,7 +87,7 @@ export default function ProductView() {
       <div className="flex flex-col p-10 w-10/12 rounded-3xl bg-[#383737] mx-auto mt-36 md:h-5/6 md:ml-8 md:mt-5">
         <div className="flex flex-row">
           <h2 className="text-xl font-bold mb-2">{product?.name}</h2>
-          {favorites.filter((cur) => cur.id == product?.id).length
+          {favorites.filter((cur) => cur.id === product?.id).length
             ? user && (
                 <AiFillHeart className="text-red-600 text-2xl ml-5 mt-1" />
               )

@@ -101,6 +101,7 @@ export default function OrderDetails() {
         <img
           src="https://cdn.countryflags.com/thumbs/lebanon/flag-800.png"
           className="w-5 h-5 relative bottom-3 left-3"
+          alt="order"
         />
       </sup>
       <h1 className="font-semibold text-gray-100 text-2xl font-serif mb-10">

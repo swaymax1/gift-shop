@@ -1,7 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../redux/store";
 import { removeFromBox } from "../redux/productSlice";
-import { Product } from "../types";
 import ProductInBoxCard from "./ProductInBoxCard";
 import { Link } from "react-router-dom";
 

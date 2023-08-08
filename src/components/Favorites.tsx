@@ -1,12 +1,10 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../redux/store";
+import { useSelector } from "react-redux";
+import { RootState } from "../redux/store";
 import { ProductItem } from "./ProductItem";
 import { Product } from "../types";
 import { AiFillHeart } from "react-icons/ai";
 
 export default function Favorites() {
-  const dispatch = useDispatch<AppDispatch>();
   const favorites = useSelector(
     (state: RootState) => state.authReducer.favorites
   );
@@ -16,7 +14,7 @@ export default function Favorites() {
       <h1 className="font-bold text-2xl">
         Favorites <AiFillHeart className="inline text-red-600"/>
       </h1>
-      <div className="flex flex-col w-3/5 md:w-1/5 mx-auto">
+      <div className="flex flex-col w-3/5 md:w-1/5 mx-auto mt-6">
         {favorites.map((product: Product) => (
           <ProductItem product={product} key={product.id} />
         ))}

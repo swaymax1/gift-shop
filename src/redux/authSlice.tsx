@@ -107,7 +107,7 @@ export const addToFavorite = createAsyncThunk(
       const snapshot = await getDocs(
         query(collection(db, "users"), where("uid", "==", uid))
       );
-      if (snapshot.size == 1) {
+      if (snapshot.size === 1) {
         updateDoc(snapshot.docs[0].ref, {
           favorites: [...snapshot.docs[0].data()["favorites"], product.id],
         });

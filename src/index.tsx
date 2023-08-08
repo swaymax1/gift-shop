@@ -46,8 +46,6 @@ function Layout({ children }: { children: React.ReactNode }) {
     (state: RootState) => state.productReducer.loading
   );
 
-  console.log(loading);
-
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar />

@@ -1,7 +1,7 @@
 import InfiniteScroll from "react-infinite-scroll-component";
 import { ProductItem } from "./ProductItem";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../redux/store";
+import { AppDispatch } from "../redux/store";
 import {
   getNextProducts,
   selectHasMore,
@@ -18,7 +18,7 @@ export default function ProductsList() {
   return (
     <div>
       <InfiniteScroll
-        className="grid grid-cols-2 gap-5 md:grid-cols-4 mt-4 mx-2"
+        className="grid grid-cols-2 gap-3 md:gap-5 md:grid-cols-4 mt-4 mx-2"
         dataLength={products.length}
         loader={<Spinner />}
         hasMore={hasMore}

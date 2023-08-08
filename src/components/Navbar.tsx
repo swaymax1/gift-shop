@@ -36,7 +36,7 @@ export default function Navbar() {
           <i>YourGifts</i>
         </Link>
       </div>
-      <div className="flex items-center">
+      <div className="flex items-center z-10">
         <button className="" onClick={() => {}}>
           <div
             className="flex justify-center items-center mr-6"

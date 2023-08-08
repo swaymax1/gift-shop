@@ -40,7 +40,7 @@ const SignInModal = ({ isOpen, onRequestClose }: Props) => {
     <Modal
       isOpen={isOpen}
       onRequestClose={onRequestClose}
-      className="rounded-lg p-6 fixed top-20 left-10 w-9/12 h-fit bg-zinc-800 md:left-1/3 md:w-4/12 md:top-32"
+      className="rounded-lg p-6 fixed top-20 left-10 w-10/12 h-fit bg-zinc-800 md:left-1/3 md:w-4/12 md:top-32"
     >
       <p className="text-red-600 mb-3">{error}</p>
       <h2 className="text-2xl font-bold mb-4">Sign In</h2>

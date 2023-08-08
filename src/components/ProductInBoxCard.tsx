@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { getProductTotalAmount } from "../lib/utils";
 import { AppDispatch } from "../redux/store";
-import { Product, ProductInBox } from "../types";
+import { ProductInBox } from "../types";
 import Selector from "./Selector";
 import { setProductInBoxQuantity } from "../redux/productSlice";
 import { useEffect, useState } from "react";

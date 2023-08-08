@@ -2,7 +2,6 @@ import { AiOutlineInstagram } from "react-icons/ai";
 import { BsTiktok } from "react-icons/bs";
 
 export default function Footer({classes} : any) {
-  let s = "";
   return (
     <footer
       className={`text-white py-4 text-center flex flex-col items-center justify-center mt-20 ${classes}`}
