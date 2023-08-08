@@ -2,7 +2,7 @@
 
 YourGifts Online Shop. This website is designed to showcase and sell a variety of unique gifts for every occasion. With a responsive design, secure authentication, and reliable hosting.
 
-### <a align="center" href="https://gift-shop-4bf1f.web.app/">Live demo</a>
+### <a href="https://gift-shop-4bf1f.web.app/">Live demo</a>
 
 ## Technologies and Libraries Used
 
@@ -16,7 +16,7 @@ YourGifts Online Shop. This website is designed to showcase and sell a variety o
 
 - **React Infinite Scroll Component**
 
-- **Tpescript**
+- **Typescript**
 
 ## Features
 
